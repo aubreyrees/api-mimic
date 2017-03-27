@@ -4,7 +4,7 @@ function to implement some desired, alternate behaviour.
 
 The functionality of this module is split into parts: factories and
 converters. For the purposes of this module, an API is considered just
-to be a dictionary of name, function key, value pairs.
+to be a dictionary of name/function key/value pairs.
 
 A factory takes an API and produces a class that can be initialized
 with the desired dispatch function.  Two factories are supplied:
