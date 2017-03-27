@@ -1,0 +1,4 @@
+graft pluggable_list
+include LICENSE
+include MANIFEST.in
+include README.rst

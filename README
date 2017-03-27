@@ -1,0 +1,23 @@
+This modules provides functions to create classes with the intention of
+mimicking another module or classes API and then invoking a dispatch
+function to implement some desired, alternate behaviour.
+
+The functionality of this module is split into parts: factories and
+converters. For the purposes of this module, an API is considered just
+to be a dictionary of name, function key, value pairs.
+
+A factory takes an API and produces a class that can be initialized
+with the desired dispatch function.  Two factories are supplied:
+
+`api_mimic.full_mimic_factory` produces a class whose methods'
+signatures exactly match the mimicked API.
+
+`api_mimic.shallow_mimic_factory` produces a class whose methods'
+signatures match a provide signature.
+
+Converters are intended to take an object and produce an API that can
+be then consumed by factories.
+
+One converter is currently implemented:
+
+`api_mimic.load_module` creates an API from a module.
