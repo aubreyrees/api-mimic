@@ -1,6 +1,9 @@
 import importlib
 import pytest
-from unittest import mock
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 from contextlib import contextmanager
 
 
@@ -25,7 +28,7 @@ def api():
 def mock_callback(*args, **kwargs):
     callback = mock.Mock()
     yield callback
-    callback.assert_called_once_with(*args, *kwargs)
+    callback.assert_called_once_with(*args, **kwargs)
 
 
 @pytest.fixture()

@@ -33,7 +33,7 @@ coverage:
 	coverage html
 
 test:
-	python setup.py test --addopts="--cov=api_mimic"
+	python setup.py test --pytest-args="--cov=api_mimic"
 
 install: clean
 	python setup.py install

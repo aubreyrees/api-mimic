@@ -18,6 +18,14 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+tests_require = ['pytest', 'pytest-cov']
+install_requires = []
+
+if sys.version_info < (3,3):
+    tests_require.append('mock')
+    install_requires.append('funcsigs')
+
+
 setup(
     name='api-mimic',
     version='0.1.0',
@@ -34,6 +42,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     packages=['api_mimic'],
-    tests_require = ['pytest', 'pytest-cov',],
+    install_requires=install_requires,
+    tests_require=tests_require,
     cmdclass = {'test': PyTest},
 )
