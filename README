@@ -20,4 +20,4 @@ be then consumed by factories.
 
 One converter is currently implemented:
 
-`api_mimic.load_module` creates an API from a module.
+`api_mimic.module_to_api` creates an API from a module.
