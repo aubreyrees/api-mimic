@@ -1,0 +1,10 @@
+[run]
+branch = true
+source = api_mimic
+
+
+[report]
+exclude_lines =
+    pragma: no cover
+    if PY[^2]
+    if compat.PY[^2]
