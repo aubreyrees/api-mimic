@@ -28,7 +28,7 @@ You can obtain the source from:
 Usage
 =====
 
-:code: ``api_mimic.mimic_factory(api_dict)``
+``api_mimic.mimic_factory(api_dict)``
 
 This function takes a dictionary of string/function key/value pairs
 and uses them to create a class with methods whose names and function
