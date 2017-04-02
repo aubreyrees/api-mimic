@@ -1,3 +1,7 @@
+"""
+Smooths out incompatibilities between different versions of Python
+"""
+
 # pylint: disable=import-error,invalid-name
 
 import sys

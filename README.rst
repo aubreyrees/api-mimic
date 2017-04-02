@@ -85,46 +85,26 @@ the git repository and then enter the cloned repository:
     git clone https://github.com/aubreystarktoller/api-mimic
     cd api-mimic
 
-If you are using `make` and `tox` just run:
+If you are using `make` and `tox` to run lint sanity checks and
+all tests for all versions of Python use then just invoke `tox`.
 
-::
+To run the tests in the current environment using `make` use `make test`.
 
-     tox
-
-To run the tests for Python 3 in the current environment using make:
-
-::
-
-    make test3
-
-Or for Python 2:
-
-::
-
-    make test2
-
-If you're not using `make`, then to run the tests in the current environment:
-
-::
-
-    setup.py test
+If you're not using `make`, then to run the tests in the current environment
+`setup.py test`.
 
 Coverage
 --------
 
 If you have `make` and the `coverage` package installed code coverage
-for Python 3 can be tested by running:
-
-::
-
-    make coverage3
-
-And for Python 2 it can be tested using:
+can be tested by running using `make coverage`.
 
 
-::
+Linting
+-------
 
-    make coverage2
+If you have `make` and the `pylint` package installed a full report
+of the code can be generated using `make lint`.
 
 
 Authors

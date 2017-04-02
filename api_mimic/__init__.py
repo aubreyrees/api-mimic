@@ -1,11 +1,18 @@
 from . import compat
 
 
-def iface_init(self, callback):
-    self.callback = callback
-
-
 def mimic_factory(target):
+    """
+    Creates a class whose methods match the names and signatures of the
+    functions in `target`.
+    """
+
+    def iface_init(self, callback):
+        """
+        Init fuction for our new class
+        """
+        self.callback = callback
+
     attrs = {'__init__': iface_init}
 
     for op_func_name, op_func in target.items():
@@ -28,7 +35,7 @@ def mimic_factory(target):
                 names.append(param.name)
             elif param.kind == compat.Parameter.VAR_KEYWORD:
                 unbound_kwargs = param.name
-            else: 
+            else:
                 # param.kind == compat.Parameter.KEYWORD_ONLY
                 # this is last otherwise this chokes with Python < 3
                 if not unbound_args and not kwargs_seen:

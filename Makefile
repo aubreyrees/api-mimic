@@ -1,3 +1,9 @@
+python_version_full := $(wordlist 2,4,$(subst ., ,$(shell python --version 2>&1)))
+python_version_major := $(word 1,${python_version_full})
+python_version_minor := $(word 2,${python_version_full})
+python_version_patch := $(word 3,${python_version_full})
+
+
 help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
 	@echo "clean-build - remove build artifacts"
@@ -5,6 +11,8 @@ help:
 	@echo "clean-test - remove test and coverage artifacts"
 	@echo "test - run tests with the active Python binary"
 	@echo "coverage - check code coverage with the active Python binary"
+	@echo "lint - generate a full report on the state of the code"
+	@echo "lint-bare - a bare bones sanity check of the code to ensure there are no major problems"
 	@echo "install - install the package to the active Python's site-packages"
 
 clean: clean-test clean-build clean-pyc
@@ -27,29 +35,20 @@ clean-test:
 	rm -rf .cache/
 	rm -rf htmlcov/
 
-coverage2:
-	coverage report erase
-	coverage run --rcfile coveragerc2 --branch --source api_mimic setup.py test
-	coverage report -m
-	coverage html
+coverage:
+	coverage erase --rcfile ./coverage.${python_version_major}.rc
+	coverage run --rcfile ./coverage.${python_version_major}.rc setup.py test
+	coverage report --rcfile ./coverage.${python_version_major}.rc
+	coverage html --rcfile ./coverage.${python_version_major}.rc
 
-coverage3:
-	coverage erase --rcfile ./coverage.3.rc
-	coverage run --rcfile ./coverage.3.rc setup.py test
-	coverage report --rcfile ./coverage.3.rc
-	coverage html --rcfile ./coverage.3.rc
-
-test2:
-	python setup.py test --pytest-args="--cov=api_mimic --cov-config coverage.2.rc"
-
-test3:
-	python setup.py test --pytest-args="--cov=api_mimic --cov-config coverage.3.rc"
+test:
+	python setup.py test --pytest-args="--cov=api_mimic --cov-config coverage.${python_version_major}.rc"
 
 install: clean
 	python setup.py install
 
-lint3:
-	pylint --rcfile=pylint.3.rc api_mimic
+lint:
+	pylint --rcfile=pylint.${python_version_major}.rc api_mimic
 
-lint3-bare:
-	pylint --rcfile=pylint.3.rc --disable C,R --persistent=n --reports=n api_mimic
+lint-bare:
+	pylint --rcfile=pylint.${python_version_major}.rc --disable C,R --persistent=n --reports=n api_mimic
