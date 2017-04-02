@@ -78,7 +78,7 @@ Example usage
 Testing
 =======
 
-It is recommend that you use :code: `make` and :code: `tox` to run the tests. First clone
+It is recommend that you use ``make`` and ``tox`` to run the tests. First clone
 the git repository and then enter the cloned repository:
 
 ::
