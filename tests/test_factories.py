@@ -43,20 +43,20 @@ def test_my_test(mimic, singleton_api, test_args, test_kwargs):
             getattr(cls(l.null_func), func_name)(*test_args, **test_kwargs)
 
     else:
-        expected_args = test_args
-        expected_kwargs = {}
-        additional = []
+        expected = test_kwargs.copy()
 
-        for name, value in test_kwargs.items():
-            idx = l.NAMES.index(name)
-            if idx <= sig.arg_count():
-                additional.append((idx, value))
-            else:
-                expected_kwargs[name] = value
+        test_arg_iter = iter(test_args)
+        names_iter = iter(l.NAMES)
 
-        expected_args += tuple(x[1] for x in sorted(additional, key=lambda t: t[0]))
+        for _ in range(min(len(test_args), sig.arg_count())):
+            name = next(names_iter)
+            if name not in test_kwargs:
+                expected[name] = next(test_arg_iter)
+
+        if sig.unbound_args:
+            expected[sig.UNBOUND_ARG_NAME] = list(test_arg_iter)
 
         callback = l.mock.Mock()
         getattr(cls(callback), func_name)(*test_args, **test_kwargs)
 
-        callback.called_once_with(func_name, expected_args, expected_kwargs)
+        callback.called_once_with(func_name, expected)

@@ -11,10 +11,9 @@ def mimic_factory(target):
     for op_func_name, op_func in target.items():
         op_func_sig = compat.signature(op_func)
 
-        arg_names = []
-        kwarg_names = []
-        unbound_args = None
+        names = []
         unbound_kwargs = None
+        unbound_args = None
         kwargs_seen = False
         proxy_op_func_str_args = "self"
 
@@ -23,9 +22,10 @@ def mimic_factory(target):
                     param.kind == compat.Parameter.POSITIONAL_ONLY or
                     param.kind == compat.Parameter.POSITIONAL_OR_KEYWORD
             ):
-                arg_names.append(param.name)
+                names.append(param.name)
             elif param.kind == compat.Parameter.VAR_POSITIONAL:
-                unbound_args = param.name
+                unbound_args = True
+                names.append(param.name)
             elif param.kind == compat.Parameter.VAR_KEYWORD:
                 unbound_kwargs = param.name
             else: 
@@ -34,25 +34,22 @@ def mimic_factory(target):
                 if not unbound_args and not kwargs_seen:
                     proxy_op_func_str_args += ',*'
                 kwargs_seen = True
-                kwarg_names.append(param.name)
+                names.append(param.name)
 
             proxy_op_func_str_args += ',' + str(param)
 
         func_body = []
 
-        func_body.append('saved_args = [' + ', '.join(arg_names) + ']')
-        if unbound_args is not None:
-            func_body.append('saved_args.extend(' + unbound_args + ')')
 
         func_body.append(
-            'saved_kwargs = {{{0}}}'
-            .format(', '.join('"{0}": {0}'.format(n) for n in kwarg_names))
+            'args = {{{0}}}'
+            .format(', '.join('"{0}": {0}'.format(n) for n in names))
         )
         if unbound_kwargs is not None:
-            func_body.append('saved_kwargs.update({})'.format(unbound_kwargs))
+            func_body.append('args.update({})'.format(unbound_kwargs))
 
         func_body.append(
-            'return self.callback("{}", tuple(saved_args), saved_kwargs)'
+            'return self.callback("{}", args)'
             .format(op_func_name)
         )
 

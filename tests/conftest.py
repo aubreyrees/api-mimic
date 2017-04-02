@@ -30,10 +30,13 @@ class API(UserDict):
         for name, func in self.items():
             s.append('{}: {}'.format(name, func.code.strip()))
         return '{' + ', '.join(s) + '}'
- 
- 
+
+
 
 class Sig:
+    UNBOUND_ARG_NAME = 'args'
+    UNBOUND_KWARG_NAME = 'kwargs'
+
     def __init__(self, args, args_with_default, unbound_args, kwargs, kwargs_with_default, unbound_kwargs):
         self.args = args
         self.args_with_default = args_with_default
@@ -130,7 +133,7 @@ def make_func(sig):
 
 
 def make_api(*sigs):
-    return {"func" + str(idx): make_func(sig) for idx, sig in enumerate(sigs)}
+    return API(("func" + str(idx), make_func(sig)) for idx, sig in enumerate(sigs))
 
 
 def null_func(*args, **kwargs):
