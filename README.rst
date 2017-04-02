@@ -10,7 +10,7 @@ function to implement some desired, alternate behaviour.
 Installation
 ============
 
-Supported Python versions are: 2.7, 3.4, 3.5 and 3.6.
+Supported Python versions are: 2.7, 3.4 and 3.5.
 
 To install using pip:
 
