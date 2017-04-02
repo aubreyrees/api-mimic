@@ -28,13 +28,14 @@ You can obtain the source from:
 Usage
 =====
 
-`api_mimic.mimic_factory(api_dict)`
+:code: `api_mimic.mimic_factory(api_dict)`
 
 This function takes a dictionary of string/function key/value pairs
 and uses them to create a class with methods whose names and function
 signatures exactly match those in the dictionary.
 
-The created class takes a callback function as it's sole initialization.
+The created class takes a callback function as it's sole initialization
+argument.
 This function must take take a string and a dictionary as it's only
 positional arguments. This function is called whenever a method on
 generated class is called, and the name of method called is used as
@@ -77,7 +78,7 @@ Example usage
 Testing
 =======
 
-It is recommend that you use `mak`e and `tox` to run the tests. First clone
+It is recommend that you use :code: `make` and :code: `tox` to run the tests. First clone
 the git repository and then enter the cloned repository:
 
 ::
