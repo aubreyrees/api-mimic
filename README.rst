@@ -115,5 +115,5 @@ Authors
 
 License
 =======
-api-mimic is licensed under the GPL3 license. See
+api-mimic is licensed under the GPL3. See
 LICENSE for the full license.
