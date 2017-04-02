@@ -16,7 +16,7 @@ To install using pip:
 
 ::
 
-    pip install git+https://github.com/aubreystarktoller/api-mimic.git
+    pip install api-mimic
 
 You can obtain the source from:
 
