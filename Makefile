@@ -48,7 +48,7 @@ install: clean
 	python setup.py install
 
 lint:
-	pylint --rcfile=pylint.${python_version_major}.rc api_mimic
+	pylint --rcfile=pylint.rc api_mimic
 
 lint-bare:
-	pylint --rcfile=pylint.${python_version_major}.rc --disable C,R --persistent=n --reports=n api_mimic
+	pylint --rcfile=pylint.rc --disable C,R --persistent=n --reports=n api_mimic
