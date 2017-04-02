@@ -37,8 +37,8 @@ signatures exactly match those in the dictionary.
 The created class takes a callback function as it's sole initialization
 argument.
 This function must take take a string and a dictionary as it's only
-positional arguments. This function is called whenever a method on
-generated class is called. The name of method called is used as
+positional arguments. This function is called when a method of the
+generated class is called. The name of the method called is used as
 the callback function's first argument, and the arguments that the
 method was invoked with as the second.
 
