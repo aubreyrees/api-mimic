@@ -35,7 +35,7 @@ setup(
     license='GPL3',
     include_package_data=True,
     classifiers=[
-        'Development Status :: 2 - Beta',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GPL3 License',
         'Programming Language :: Python :: 2.7',
