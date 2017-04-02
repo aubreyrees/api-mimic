@@ -38,8 +38,8 @@ The created class takes a callback function as it's sole initialization
 argument.
 This function must take take a string and a dictionary as it's only
 positional arguments. This function is called whenever a method on
-generated class is called, and the name of method called is used as
-the callback function's first argument, the and the arguments that the
+generated class is called. The name of method called is used as
+the callback function's first argument, and the arguments that the
 method was invoked with as the second.
 
 The method's arguments are passed as a dictionary with the argument name
