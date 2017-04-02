@@ -5,6 +5,8 @@ source = api_mimic
 
 [report]
 exclude_lines =
-    pragma: no cover
     if PY[^3]
     if compat.PY[^3]
+partial_branches =
+    if PY3
+    if compat.PY3
