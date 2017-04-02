@@ -43,7 +43,7 @@ method was invoked with as the second.
 
 The method's arguments are passed as a dictionary with the argument name
 as the key for that argument's value. If the method can be invoked with
-unbound positional arguments (e.g. *args) then the argument name and a 
+unbound positional arguments (e.g. \*args) then the argument name and a 
 tuple of all unbound arguments form a key pair.
 
 Example usage
@@ -94,11 +94,13 @@ If you are using `make` and `tox` just run:
 To run the tests for Python 3 in the current environment using make:
 
 ::
+
     make test3
 
 Or for Python 2:
 
 ::
+
     make test2
 
 If you're not using `make`, then to run the tests in the current environment:
