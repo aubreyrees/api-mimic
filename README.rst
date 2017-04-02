@@ -22,7 +22,7 @@ You can obtain the source from:
 
 ::
 
-    https://github.com/aubreystarktoller/lite-boolean-formulae
+    https://github.com/aubreystarktoller/api-mimic
 
 
 Usage
@@ -132,5 +132,5 @@ Authors
 
 License
 =======
-lite-boolean-formula is licensed under the BSD license. See
+api-mimic is licensed under the GPL3 license. See
 LICENSE for the full license.
