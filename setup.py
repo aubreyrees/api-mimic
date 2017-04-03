@@ -26,10 +26,18 @@ if sys.version_info < (3,3):
     install_requires.append('funcsigs')
 
 
+description = """
+This modules provides functionality to create classes with the intention
+of mimicking another module or classes API and then invoking a dispatch
+function to implement some desired, alternate behaviour.
+"""
+
+
 setup(
     name='api-mimic',
-    version='1.0',
+    version='1.0b2',
     description='API mimicry',
+    long_description=description,
     author='Aubrey Stark-Toller',
     author_email='aubrey@kleetope.uk',
     license='GPL3',
@@ -37,7 +45,7 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
