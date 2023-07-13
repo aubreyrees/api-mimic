@@ -10,7 +10,7 @@ function to implement some desired, alternate behaviour.
 Installation
 ============
 
-Supported Python versions are: 2.7, 3.4 and 3.5.
+Supported Python versions are: 3.8, 3.9, 3.10, 3.11
 
 To install using pip:
 
@@ -87,18 +87,15 @@ the git repository and then enter the cloned repository:
 
 And invoke `tox`
 
-Other Test Utils
-----------------
-
-``make`` is used for various maintence & testing tasks.
-
-``make 
-``make lint`` lints the code
-
 
 Authors
 =======
 * Aubrey Rees <aubrey@kleetope.net>
+
+Copyright
+========
+
+Copyright © Aubrey Rees <aubrey@kleetope.net>
 
 
 License
