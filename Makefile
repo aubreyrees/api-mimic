@@ -9,11 +9,11 @@ help:
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
-	@echo "test - run tests with the active Python binary"
-	@echo "coverage - check code coverage with the active Python binary"
-	@echo "lint - generate a full report on the state of the code"
-	@echo "lint-bare - a bare bones sanity check of the code to ensure there are no major problems"
-	@echo "install - install the package to the active Python's site-packages"
+	@echo "test - run `pytest` using `coverage`"
+	@echo "coverage_report - generate a report for `coverage`. Run after `test`"
+	@echo "lint - lint the project using `ruff`"
+	@echo "lint_test - lint the tests using `ruff`"
+	@echo "install - install the package using `build` frontend & `pip`"
 
 clean: clean-test clean-build clean-pyc
 
@@ -31,24 +31,23 @@ clean-pyc:
 
 clean-test:
 	rm -rf .tox/
-	rm -f .coverage
+	coverage erase
+	python -m ruff clean
 	rm -rf .cache/
 	rm -rf htmlcov/
 
-coverage:
-	coverage erase --rcfile ./coverage.${python_version_major}.rc
-	coverage run --rcfile ./coverage.${python_version_major}.rc setup.py test
-	coverage report --rcfile ./coverage.${python_version_major}.rc
-	coverage html --rcfile ./coverage.${python_version_major}.rc
+coverage-report:
+	coverage report --no-skip-covered -m
+	coverage html
 
 test:
-	python setup.py test --pytest-args="--cov=api_mimic --cov-config coverage.${python_version_major}.rc"
+	python -m pytest
 
 install: clean
-	python setup.py install
+	python -m pip install .
 
 lint:
-	pylint --rcfile=pylint.rc api_mimic
+	python -m ruff check src/api_mimic.py
 
-lint-bare:
-	pylint --rcfile=pylint.rc --disable C,R --persistent=n --reports=n api_mimic
+lint-test:
+	python -m ruff check tests/
