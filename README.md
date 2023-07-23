@@ -108,12 +108,12 @@ if all tests pass builds the pacakage.
 
 ## Authors
 
-Aubrey Rees <aubrey@kleetope.net>
+Aubrey Rees \<aubrey@kleetope.net>
 
 ## Copyright
 
 
-Copyright © Aubrey Rees <aubrey@kleetope.net>
+Copyright © Aubrey Rees \<aubrey@kleetope.net>
 
 
 ## License
