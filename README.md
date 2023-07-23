@@ -1,4 +1,4 @@
-## API Mimic
+# API Mimic
 
 ## About
 
@@ -15,7 +15,7 @@ Supported Python versions are: 3.8, 3.9, 3.10, 3.11
 
 To install using pip:
 
-```
+```sh
     pip install api-mimic
 ```
 
@@ -51,7 +51,7 @@ tuple of all unbound arguments form a key pair.
 ## Example usage
 
 
-```
+```python
     In [1]: from api_mimic import mimic_factory
        ...:
        ...: def func1(a, b, c):
@@ -95,7 +95,7 @@ build.
 virtual enviroment's bin directory and fail gracefully if the
 enviroment has not been build. For example:
 
-```
+```sh
 scripts/safe_bin.sh python -m pip install build
 ```
 
