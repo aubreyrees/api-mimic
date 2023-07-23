@@ -14,6 +14,7 @@ help:
 	@echo "install-dev    install the package & its extra dev dependencies"
 	@echo "build-only     build the package"
 	@echo "build          run \`install-build\`, \`tox\` & \`build-only\` targets"
+	@echo "im             starts Python in interactive mode; uses \`ipython\`"
 	@echo "help           print this messsage"
 
 clean: clean-test clean-build clean-pyc
@@ -70,3 +71,6 @@ build: install-build tox build-only
 
 build-only:
 	scripts/safe_bin.sh python -m build
+
+im:
+	scripts/safe_bin.sh ipython
