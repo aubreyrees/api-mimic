@@ -1,7 +1,7 @@
 ## API Mimic
 
 ## About
----
+
 
 Provides factory fuctions that create classes that mimic a provided a dict
 of functions (which have no return values) and invokes a callback when the
@@ -9,7 +9,7 @@ mimiced methods/functions are called.
 
 
 ## Installation
----
+
 
 Supported Python versions are: 3.8, 3.9, 3.10, 3.11
 
@@ -26,7 +26,7 @@ You can obtain the source from:
 ```
 
 ## Usage
----
+
 
 `api_mimic.make_mimic_factory(api_dict)`
 
@@ -49,7 +49,7 @@ unbound positional arguments (e.g. \*args) then the argument name and a
 tuple of all unbound arguments form a key pair.
 
 ## Example usage
----
+
 
 ```
     In [1]: from api_mimic import mimic_factory
@@ -76,7 +76,7 @@ tuple of all unbound arguments form a key pair.
 ```
  
 ## Build Tools
----
+
 
 The git repo has various tools for development.
 
@@ -110,16 +110,16 @@ in using `tox` and `make build` which runs tests using `tox` and
 if all tests pass builds the pacakage.
 
 ## Authors
----
+
 Aubrey Rees <aubrey@kleetope.net>
 
 ## Copyright
----
+
 
 Copyright © Aubrey Rees <aubrey@kleetope.net>
 
 
 ## License
----
+
 api-mimic is licensed under the GPL3. See
 LICENSE for the full license.
