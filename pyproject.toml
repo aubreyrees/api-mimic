@@ -3,7 +3,7 @@ name = "api-mimic"
 version = "2.0"
 description = "API mimicry"
 authors = [
-  { name = "Aubrey Ress", email = "aubrey@kleetope.net" }
+  { name = "Aubrey Rees", email = "aubrey@kleetope.net" }
 ]
 license = { file = "LICENSE" }
 readme = "README.rst"
