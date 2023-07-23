@@ -1,11 +1,15 @@
-# About
+## API Mimic
+
+## About
+---
 
 Provides factory fuctions that create classes that mimic a provided a dict
 of functions (which have no return values) and invokes a callback when the
 mimiced methods/functions are called.
 
 
-# Installation
+## Installation
+---
 
 Supported Python versions are: 3.8, 3.9, 3.10, 3.11
 
@@ -21,7 +25,8 @@ You can obtain the source from:
     https://github.com/aubreyrees/api-mimic
 ```
 
-# Usage
+## Usage
+---
 
 `api_mimic.make_mimic_factory(api_dict)`
 
@@ -43,7 +48,8 @@ as the key for that argument's value. If the method can be invoked with
 unbound positional arguments (e.g. \*args) then the argument name and a 
 tuple of all unbound arguments form a key pair.
 
-# Example usage
+## Example usage
+---
 
 ```
     In [1]: from api_mimic import mimic_factory
@@ -69,11 +75,12 @@ tuple of all unbound arguments form a key pair.
        ...: function called with: {'a': 1, 'b': (2, 3, 4, 5), 'c': 6, 'd': 7}
 ```
  
-# Build Tools
+## Build Tools
+---
 
 The git repo has various tools for development.
 
-## Scripts
+### Scripts
 
 Utility scripts are found in the `scripts` directory in the repository's root.
 
@@ -95,21 +102,24 @@ scripts/safe_bin.sh python -m pip install build
 Will use the Python binary in the virtual enviroment's binary
 directory and pass all further arguments to the binary.
 
-## Makefile
+### Makefile
 
 A Makefile is included with targets for common development tasks.
 Runt `make help` to see these. Of note our `make tox` to run tests
 in using `tox` and `make build` which runs tests using `tox` and 
 if all tests pass builds the pacakage.
 
-# Authors
+## Authors
+---
 Aubrey Rees <aubrey@kleetope.net>
 
-# Copyright
+## Copyright
+---
 
 Copyright © Aubrey Rees <aubrey@kleetope.net>
 
 
-# License
+## License
+---
 api-mimic is licensed under the GPL3. See
 LICENSE for the full license.
