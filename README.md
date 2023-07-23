@@ -30,25 +30,22 @@ You can obtain the source from:
 
 `api_mimic.make_mimic_factory(api_dict)`
 
-This function takes a dictionary of string/function key/value pairs
+This function takes a dictionary of string/functions as key/value pairs
 and uses them to create a factory function. The function values in the
-dictionary should not have return values. The factroy function takes a
-callback function as its sole argument and it returns a class whose methods
-match the names and function signatures of the dictionary keys & function
-values signatures.
+dictionary should not have return values.
 
-This callback function takes a string and a dictionary as it's
-positional arguments. This function is called when a method of the
-generated class is invoked. The name of the method called is used as
-the callback function's first argument, and the arguments that the
-method was invoked with as the second.
+The factory function takes a callback function as its sole argument
+and it returns a class whose methods' names & signatures match the
+dictionary keys & function values signatures.
 
-The method's arguments are passed as a dictionary with the argument name
-as the key for that argument's value. If the method can be invoked with
-unbound positional arguments (e.g. \*args) then the argument name and a 
-tuple of all unbound arguments form a key pair.
+This callback function takes the name of the function & a dictionary of the
+functions arguments as its first and second arguments. It is called when
+a method of the generated class is called.
 
-## Example usage
+If a mimiced function takes unbound positional arguments then these are
+passed to the callback in a tuple.
+
+### Example usage
 
 
 ```python
