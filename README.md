@@ -49,29 +49,30 @@ passed to the callback in a tuple.
 
 
 ```python
-In [1]: from api_mimic import make_mimic_factory
-   ...:
-   ...: def func1(a, b, c):
-   ...:     pass
-   ...:
-   ...:
-   ...: def func2(a, *b, c, **kwargs):
-   ...:     pass
-   ...:
-   ...:
-   ...: def callback(name, args):
-   ...:   print('function name: ' + name)
-   ...:   print('function called with: ' + str(args))
-   ...:
-   ...:
-   ...: factory = make_mimic_factory({'func1': func1, 'func2': func2})
-   ...:
-   ...: factory(callback).func2(1, 2, 3, 4, 5, c=6, d=7)
+from api_mimic import make_mimic_factory
 
-Out[1]: function name: func2
-   ...: function called with: {'a': 1, 'b': (2, 3, 4, 5), 'c': 6, 'd': 7}
+def func1(a, b, c):
+    pass
+
+
+def func2(a, *b, c, **kwargs):
+    pass
+
+
+def callback(name, args):
+    print('function name: ' + name)
+    print('function called with: ' + str(args))
+
+
+factory = make_mimic_factory({'func1': func1, 'func2': func2})
+factory(callback).func2(1, 2, 3, 4, 5, c=6, d=7)
 ```
- 
+
+Output:
+```
+function name: func2
+function called with: {'a': 1, 'b': (2, 3, 4, 5), 'c': 6, 'd': 7}
+```
 ## Build Tools
 
 
