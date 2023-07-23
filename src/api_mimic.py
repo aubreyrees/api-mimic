@@ -1,7 +1,9 @@
 """
-This modules provides functionality to create classes with the intention
-of mimicking another module or classes API and then invoking a dispatch
-function to implement some desired, alternate behaviour.
+Functions for mimicing & repurposing functions without return values.
+
+Provides factory fuctions that create classes that mimic a provided a dict
+of functions (which have no return values) and invokes a callback when the
+mimiced methods/functions are called.
 
 api-mimic is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,18 +26,23 @@ from typing import Dict, Callable, Any
 __all__ = ['make_mimic_factory']
 
 
-def mimic_factory(target : Dict[str, Callable[..., Any]]) -> type:
+def mimic_factory(target : Dict[str, Callable[..., Any]]) \
+            -> Callable[[Callable[[str, Dict], None]], type]:
+    """Decprecated function - use `make_mimic_factory`."""
     from warnings import warn
     warn('This is deprecated', DeprecationWarning, stacklevel=2)
     return make_mimic_factory(target)
 
 
-def make_mimic_factory(target : Dict[str, Callable[..., Any]]) -> type:
+def make_mimic_factory(target : Dict[str, Callable[..., Any]]) \
+            -> Callable[[Callable[[str, dict], None]], type]:
     """
-    Creates a class whose methods match the names and signatures of the
-    functions in `target`.
-    """
+    Create a factory that produces a mimic class.
 
+    The factory function takes a callback as an argument and produces
+    a class whose interface mimics target and then invokes the provided
+    callback when the mimiced function is called.
+    """
     code = "def factory(callback):"
 
     for op_func_name, op_func in target.items():

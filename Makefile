@@ -1,19 +1,20 @@
-python_version_full := $(wordlist 2,4,$(subst ., ,$(shell python --version 2>&1)))
-python_version_major := $(word 1,${python_version_full})
-python_version_minor := $(word 2,${python_version_full})
-python_version_patch := $(word 3,${python_version_full})
-
-
 help:
-	@echo "clean - remove all build, test, coverage and Python artifacts"
-	@echo "clean-build - remove build artifacts"
-	@echo "clean-pyc - remove Python file artifacts"
-	@echo "clean-test - remove test and coverage artifacts"
-	@echo "test - run `pytest` using `coverage`"
-	@echo "coverage_report - generate a report for `coverage`. Run after `test`"
-	@echo "lint - lint the project using `ruff`"
-	@echo "lint_test - lint the tests using `ruff`"
-	@echo "install - install the package using `build` frontend & `pip`"
+	@echo "clean          run \`clean-build\`, \`clean-pyc\` & \`clean-test\` targets"
+	@echo "clean-build    remove build artifacts"
+	@echo "clean-pyc      remove Python file artifacts"
+	@echo "clean-test     remove test and coverage artifacts"
+	@echo "clean-venv     remove the dev tools virtual enviroment"
+	@echo "test           run \`pytest\` on the project"
+	@echo "tox            run \`tox\` on the project"
+	@echo "coverage       run \`coverage\` and generate a report"
+	@echo "lint           lint the project using \`ruff\`"
+	@echo "lint-test      lint the tests using \`ruff\`"
+	@echo "install        install the package locally"
+	@echo "install-build  install the package & its extra build dependencies"
+	@echo "install-dev    install the package & its extra dev dependencies"
+	@echo "build-only     build the package"
+	@echo "build          run \`install-build\`, \`tox\` & \`build-only\` targets"
+	@echo "help           print this messsage"
 
 clean: clean-test clean-build clean-pyc
 
@@ -31,23 +32,41 @@ clean-pyc:
 
 clean-test:
 	rm -rf .tox/
-	coverage erase
-	python -m ruff clean
+	scripts/safe_bin.sh coverage erase
+	scripts/safe_bin.sh python -m ruff clean
 	rm -rf .cache/
 	rm -rf htmlcov/
 
-coverage-report:
-	coverage report --no-skip-covered -m
-	coverage html
+clean-venv:
+	rm -rf api_mimic_build_venv
+
+coverage:
+	scripts/safe_bin.sh coverage -m pytest
+	scripts/safe_bin.sh coverage report --no-skip-covered
+	scripts/safe_bin.sh coverage html
 
 test:
-	python -m pytest
+	scripts/safe_bin.sh python -m pytest
 
-install: clean
-	python -m pip install .
+tox:
+	scripts/safe_bin.sh python -m tox
 
 lint:
-	python -m ruff check src/api_mimic.py
+	scripts/safe_bin.sh python -m ruff check src/api_mimic.py
 
 lint-test:
-	python -m ruff check tests/
+	scripts/safe_bin.sh python -m ruff check tests/
+
+install-dev:
+	scripts/safe_bin.sh python -m pip install .[dev]
+
+install:
+	scripts/safe_bin.sh python -m pip install .
+
+install-build:
+	scripts/safe_bin.sh python -m pip install .[build]
+
+build: install-build tox build-only
+
+build-only:
+	scripts/safe_bin.sh python -m build

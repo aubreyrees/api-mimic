@@ -2,9 +2,9 @@
 About
 =====
 
-This modules provides functionality to create classes with the intention
-of mimicking another module or classes API and then invoking a dispatch
-function to implement some desired, alternate behaviour.
+Provides factory fuctions that create classes that mimic a provided a dict
+of functions (which have no return values) and invokes a callback when the
+mimiced methods/functions are called.
 
 
 Installation
@@ -31,9 +31,11 @@ Usage
 ``api_mimic.make_mimic_factory(api_dict)``
 
 This function takes a dictionary of string/function key/value pairs
-and uses them to create a factory function. This function takes a
+and uses them to create a factory function. The function values in the
+dictionary should not have return values. The factroy function takes a
 callback function as its sole argument and it returns a class whose methods
-exactly match the names and function signatures of those in the dictionary.
+match the names and function signatures of the dictionary keys & function
+values signatures.
 
 This callback function takes a string and a dictionary as it's
 positional arguments. This function is called when a method of the
@@ -74,19 +76,36 @@ Example usage
        ...: function called with: {'a': 1, 'b': (2, 3, 4, 5), 'c': 6, 'd': 7}
 
  
-Testing
-=======
+Build Tools
+==========
 
-``tox`` is used to run the tests. First clone
-the git repository and then enter the cloned repository:
+The git repo has various tools for development.
 
-::
+Scripts
+-------
 
-    git clone https://github.com/aubreystarktoller/api-mimic
-    cd api-mimic
+Utility scripts are found in the `scripts` directory in the repository's root.
 
-And invoke `tox`
+`scripts/make_venv.sh` builds a virtual enviorment for development tools in the
+repository root directory.
 
+`source scripts/activate.sh` is a shorthand to activate the development 
+virtual enviroment and fails gracefully if the enviroment has not been
+build.
+
+`scripts/safe_bin.sh` will run a binary in the 
+virtual enviroment's bin directory and fail gracefully if the
+enviroment has not been build. For example:
+
+`scripts/safe_bin.sh python -m pip install build`
+
+Will use the Python binary in the virtual enviroment's binary
+directory and pass all further arguments to the binary.
+
+A Makefile is included with targets for common development tasks.
+Runt `make help` to see these. Of note our `make tox` to run tests
+in using `tox` and `make build` which runs tests using `tox` and 
+if all tests pass builds the pacakage.
 
 Authors
 =======
