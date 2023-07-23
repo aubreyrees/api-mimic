@@ -28,7 +28,7 @@ You can obtain the source from:
 Usage
 =====
 
-``api_mimic.make_mimic_factory(api_dict)``
+''''''api_mimic.make_mimic_factory(api_dict)''''''
 
 This function takes a dictionary of string/function key/value pairs
 and uses them to create a factory function. The function values in the
@@ -84,27 +84,29 @@ The git repo has various tools for development.
 Scripts
 -------
 
-Utility scripts are found in the `scripts` directory in the repository's root.
+Utility scripts are found in the '''scripts''' directory in the repository's root.
 
-`scripts/make_venv.sh` builds a virtual enviorment for development tools in the
+'''scripts/make_venv.sh''' builds a virtual enviorment for development tools in the
 repository root directory.
 
-`source scripts/activate.sh` is a shorthand to activate the development 
+'''source scripts/activate.sh''' is a shorthand to activate the development 
 virtual enviroment and fails gracefully if the enviroment has not been
 build.
 
-`scripts/safe_bin.sh` will run a binary in the 
+'''scripts/safe_bin.sh''' will run a binary in the 
 virtual enviroment's bin directory and fail gracefully if the
 enviroment has not been build. For example:
 
-`scripts/safe_bin.sh python -m pip install build`
+::
+
+scripts/safe_bin.sh python -m pip install build
 
 Will use the Python binary in the virtual enviroment's binary
 directory and pass all further arguments to the binary.
 
 A Makefile is included with targets for common development tasks.
-Runt `make help` to see these. Of note our `make tox` to run tests
-in using `tox` and `make build` which runs tests using `tox` and 
+Runt '''make help''' to see these. Of note our '''make tox''' to run tests
+in using '''tox''' and '''make build''' which runs tests using '''tox''' and 
 if all tests pass builds the pacakage.
 
 Authors
