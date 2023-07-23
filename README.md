@@ -49,7 +49,7 @@ passed to the callback in a tuple.
 
 
 ```python
-In [1]: from api_mimic import mimic_factory
+In [1]: from api_mimic import make_mimic_factory
    ...:
    ...: def func1(a, b, c):
    ...:     pass
